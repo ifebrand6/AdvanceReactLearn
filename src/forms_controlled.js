@@ -1,6 +1,7 @@
 import React from 'react';
+import UserContext, { UserConsumer } from './useContext/UserContext';
 
-class Test extends React.Component {
+class FormControlled extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -8,6 +9,11 @@ class Test extends React.Component {
             value: '',
             select:{ value: "Coconut    "}
         };
+    }
+    static contextType = UserContext;
+    componentDidMount(){
+        const user = this.context
+        console.log(user)
     }
     handleOnchange = (e, value) => {
         console.log(e.target.value);
@@ -33,9 +39,15 @@ class Test extends React.Component {
         // e.target.removeEventListener("click", handleAnon);
         // console.log("oppd")S
     }
+   
     render(){
+        const user = this.context
     return(
-        <div>
+        <UserConsumer>
+        {props => {
+            return   <div>
+        <p>{props.name}</p>
+        <p>{user.loggedIn}</p>
         <form onSubmit={this.handleOnSubmit} >
             <label htmlFor="Name">
                 Name:
@@ -60,10 +72,11 @@ class Test extends React.Component {
             <input type="submit" />
         </form>
         <br/>
-        {/* <p>{this.state.value}</p> */}
         </div>
+    }}
+        </UserConsumer>
     )
     
 }
 }
-export default Test;
+export default FormControlled;

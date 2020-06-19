@@ -2,12 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Test from './Test'
+import Test from './useState'
 import * as serviceWorker from './serviceWorker';
-
+import {UserProvider} from './useContext/UserContext'
+import FormControlled from './forms_controlled';
+import Counter from './useReducer';
+const user = 
+    {name: 'test',
+    loggedIn: true
+}
 ReactDOM.render(
   <React.StrictMode>
-    <Test />
+    <UserProvider value={user}>
+    <Test/>
+    <Counter/>
+    <br/>
+    <FormControlled/>
+    </UserProvider> 
   </React.StrictMode>,
   document.getElementById('root')
 );

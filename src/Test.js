@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 function FancyBorder(props) {
-    return(
+    return(     
         <div className={'FancyBorder FancyBorder-' + props.color}>
         {props.children}
         </div>
